@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tactile</string>
+    <string name="grave">GRAVE</string>
+    <string name="medio">MÉDIO</string>
+    <string name="agudo">AGUDO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

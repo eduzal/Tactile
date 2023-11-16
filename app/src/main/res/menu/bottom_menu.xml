@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomHome"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/bottomBass"
+        android:title="@string/grave"
+        android:icon="@drawable/ic_circle_12"/>
+
+    <item
+        android:id="@+id/bottomMedium"
+        android:title="@string/medio"
+        android:icon="@drawable/icc_circle_24"/>
+
+    <item
+        android:id="@+id/bottomHigh"
+        android:title="@string/agudo"
+        android:icon="@drawable/ic_treble"/>
+</menu>
