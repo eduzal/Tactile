@@ -43,8 +43,9 @@ class TrebleFragment : Fragment() {
     }
 
     private fun startVibration(duration: Long) {
+        vibrator.cancel()
+
         val pattern = longArrayOf(duration/2, duration, duration/2)
-        //val timing = longArrayOf(animationDuration, animationDuration)
         val amplitudes = intArrayOf(0, 255,0)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val vibrationEffect = VibrationEffect.createWaveform(pattern, amplitudes, 0)
@@ -84,6 +85,12 @@ class TrebleFragment : Fragment() {
         startVibration(animationDuration)
     }
 
+    fun updateAnimationDuration(duration: Long) {
+        animationDuration = duration
+        applyBlinkAnimation(animationDuration)
+        animateIcon(animationDuration)
+        startVibration(animationDuration)
+    }
 
     companion object {
         private const val ARG_DURATION = "ARG_DURATION"

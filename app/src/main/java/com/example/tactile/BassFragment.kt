@@ -14,7 +14,6 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
-
 class BassFragment : Fragment() {
 
     private lateinit var vibrator: Vibrator
@@ -27,10 +26,10 @@ class BassFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_bass,container,false)
+        val view = inflater.inflate(R.layout.fragment_bass, container, false)
         animationDuration = requireArguments().getLong(ARG_DURATION)
 
-        blinkingView  = view.findViewById(R.id.blinkingView)
+        blinkingView = view.findViewById(R.id.blinkingView)
         applyBlinkAnimation(animationDuration)
 
         iconT = view.findViewById(R.id.viewIcon)
@@ -43,13 +42,24 @@ class BassFragment : Fragment() {
         return view
     }
 
-    private fun animateIcon(duration: Long){
-        val scaleAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.scale_animation)
+    fun updateAnimationDuration(duration: Long) {
+        animationDuration = duration
+        applyBlinkAnimation(animationDuration)
+        animateIcon(animationDuration)
+        startVibration(animationDuration)
+    }
+
+    private fun animateIcon(duration: Long) {
+        val scaleAnimation =
+            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.scale_animation)
         scaleAnimation.duration = duration
         iconT.startAnimation(scaleAnimation)
     }
 
     private fun startVibration(duration: Long) {
+        // Cancel previous vibration
+        vibrator.cancel()
+
         val pattern = longArrayOf(duration/2, duration, duration/2)
         val amplitudes = intArrayOf(0, 255,0)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -62,7 +72,8 @@ class BassFragment : Fragment() {
     }
 
     private fun applyBlinkAnimation(duration: Long) {
-        val blinkAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.blink_animation)
+        val blinkAnimation =
+            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.blink_animation)
         blinkAnimation.duration = duration
         blinkAnimation.repeatCount = Animation.INFINITE
         blinkingView.startAnimation(blinkAnimation)
@@ -79,11 +90,6 @@ class BassFragment : Fragment() {
         vibrator.cancel()
     }
 
-    override fun onResume() {
-        super.onResume()
-        startVibration(animationDuration)
-    }
-
     companion object {
         private const val ARG_DURATION = "ARG_DURATION"
 
@@ -96,16 +102,3 @@ class BassFragment : Fragment() {
         }
     }
 }
-
-    /*
-    override fun onStop() {
-        super.onStop()
-        vibrator.cancel()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
-        vibrator.cancel()
-    }
-    */

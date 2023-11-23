@@ -42,7 +42,15 @@ class MediumFragment : Fragment() {
         return view
     }
 
+    fun updateAnimationDuration(duration: Long) {
+        animationDuration = duration
+        applyBlinkAnimation(animationDuration)
+        animateIcon(animationDuration)
+        startVibration(animationDuration)
+    }
     private fun startVibration(duration: Long) {
+        vibrator.cancel()
+
         val pattern = longArrayOf(duration/2, duration, duration/2)
         val amplitudes = intArrayOf(0, 255,0)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
