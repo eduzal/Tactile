@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tactile"
+    namespace = "com.ligalight.tactile"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.tactile"
+        applicationId = "com.ligalight.tactile"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

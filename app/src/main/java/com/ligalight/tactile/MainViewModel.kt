@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

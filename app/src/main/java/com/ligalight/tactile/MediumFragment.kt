@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import android.content.Context
 import android.os.Build
@@ -15,7 +15,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
 
-class TrebleFragment : Fragment() {
+class MediumFragment : Fragment() {
 
     private lateinit var vibrator: Vibrator
     private lateinit var blinkingView: View
@@ -27,8 +27,9 @@ class TrebleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_treble,container,false)
-        animationDuration = requireArguments().getLong(TrebleFragment.ARG_DURATION)
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_medium, container, false)
+        animationDuration = requireArguments().getLong(MediumFragment.ARG_DURATION)
         blinkingView  = view.findViewById(R.id.blinkingView)
         applyBlinkAnimation(animationDuration)
 
@@ -38,10 +39,15 @@ class TrebleFragment : Fragment() {
         vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         startVibration(animationDuration)
 
-        // Inflate the layout for this fragment
         return view
     }
 
+    fun updateAnimationDuration(duration: Long) {
+        animationDuration = duration
+        applyBlinkAnimation(animationDuration)
+        animateIcon(animationDuration)
+        startVibration(animationDuration)
+    }
     private fun startVibration(duration: Long) {
         vibrator.cancel()
 
@@ -85,23 +91,18 @@ class TrebleFragment : Fragment() {
         startVibration(animationDuration)
     }
 
-    fun updateAnimationDuration(duration: Long) {
-        animationDuration = duration
-        applyBlinkAnimation(animationDuration)
-        animateIcon(animationDuration)
-        startVibration(animationDuration)
-    }
 
     companion object {
         private const val ARG_DURATION = "ARG_DURATION"
 
-        fun newInstance(duration: Long): TrebleFragment {
-            val fragment = TrebleFragment()
+        fun newInstance(duration: Long): MediumFragment {
+            val fragment = MediumFragment()
             val args = Bundle()
             args.putLong(ARG_DURATION, duration)
             fragment.arguments = args
             return fragment
         }
     }
+
 
 }

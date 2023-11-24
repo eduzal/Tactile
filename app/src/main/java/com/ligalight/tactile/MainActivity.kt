@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.tactile.databinding.ActivityMainBinding
+import com.ligalight.tactile.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket

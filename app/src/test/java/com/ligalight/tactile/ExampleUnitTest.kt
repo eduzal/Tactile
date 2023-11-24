@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import org.junit.Test
 

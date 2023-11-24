@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import android.content.Context
 import android.os.Build
@@ -14,7 +14,8 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
-class BassFragment : Fragment() {
+
+class TrebleFragment : Fragment() {
 
     private lateinit var vibrator: Vibrator
     private lateinit var blinkingView: View
@@ -26,10 +27,9 @@ class BassFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_bass, container, false)
-        animationDuration = requireArguments().getLong(ARG_DURATION)
-
-        blinkingView = view.findViewById(R.id.blinkingView)
+        val view = inflater.inflate(R.layout.fragment_treble,container,false)
+        animationDuration = requireArguments().getLong(TrebleFragment.ARG_DURATION)
+        blinkingView  = view.findViewById(R.id.blinkingView)
         applyBlinkAnimation(animationDuration)
 
         iconT = view.findViewById(R.id.viewIcon)
@@ -42,22 +42,7 @@ class BassFragment : Fragment() {
         return view
     }
 
-    fun updateAnimationDuration(duration: Long) {
-        animationDuration = duration
-        applyBlinkAnimation(animationDuration)
-        animateIcon(animationDuration)
-        startVibration(animationDuration)
-    }
-
-    private fun animateIcon(duration: Long) {
-        val scaleAnimation =
-            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.scale_animation)
-        scaleAnimation.duration = duration
-        iconT.startAnimation(scaleAnimation)
-    }
-
     private fun startVibration(duration: Long) {
-        // Cancel previous vibration
         vibrator.cancel()
 
         val pattern = longArrayOf(duration/2, duration, duration/2)
@@ -71,9 +56,14 @@ class BassFragment : Fragment() {
         }
     }
 
+    private fun animateIcon(duration: Long){
+        val scaleAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.scale_animation)
+        scaleAnimation.duration = duration
+        iconT.startAnimation(scaleAnimation)
+    }
+
     private fun applyBlinkAnimation(duration: Long) {
-        val blinkAnimation =
-            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.blink_animation)
+        val blinkAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.blink_animation)
         blinkAnimation.duration = duration
         blinkAnimation.repeatCount = Animation.INFINITE
         blinkingView.startAnimation(blinkAnimation)
@@ -90,15 +80,28 @@ class BassFragment : Fragment() {
         vibrator.cancel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        startVibration(animationDuration)
+    }
+
+    fun updateAnimationDuration(duration: Long) {
+        animationDuration = duration
+        applyBlinkAnimation(animationDuration)
+        animateIcon(animationDuration)
+        startVibration(animationDuration)
+    }
+
     companion object {
         private const val ARG_DURATION = "ARG_DURATION"
 
-        fun newInstance(duration: Long): BassFragment {
-            val fragment = BassFragment()
+        fun newInstance(duration: Long): TrebleFragment {
+            val fragment = TrebleFragment()
             val args = Bundle()
             args.putLong(ARG_DURATION, duration)
             fragment.arguments = args
             return fragment
         }
     }
+
 }

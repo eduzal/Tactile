@@ -1,4 +1,4 @@
-package com.example.tactile
+package com.ligalight.tactile
 
 import android.os.Bundle
 import android.view.LayoutInflater
