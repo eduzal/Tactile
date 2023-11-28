@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    private val _animationValues = MutableLiveData<LongArray>()
-    val animationValues: MutableLiveData<LongArray> get() = _animationValues
+    private val _animationFlags = MutableLiveData<BooleanArray>()
+    val animationFlags get() = _animationFlags
 
-    fun setAnimationValues(values: LongArray) {
-        _animationValues.postValue(values)
+    fun setAnimationFlags(flags: BooleanArray) {
+        _animationFlags.postValue(flags)
     }
+
 }

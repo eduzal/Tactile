@@ -11,17 +11,4 @@
         android:layout_height="match_parent"
         android:background="@color/blue" />
 
-    <ImageView
-        android:id="@+id/viewIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:tint="@color/gray_500"
-        android:src="@drawable/ic_tactile"
-        />
-
 </FrameLayout>
